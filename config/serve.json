@@ -1,0 +1,30 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/core-build/serve.schema.json",
+  "port": 4321,
+  "https": true,
+  "serveConfigurations": {
+    "default": {
+      "pageUrl": "https://nikhiltdev.sharepoint.com/sites/M365DEV/SitePages/Home.aspx",
+      "customActions": {
+        "e8a5bcec-6fdf-42e0-9e42-51031ceffe5c": {
+          "location": "ClientSideExtension.ApplicationCustomizer",
+          "properties": {
+            "Top": "Welcome to My Dev site, you are seeing the application customizer in action",
+            "Bottom": "Bottom area of the page"
+          }
+        }
+      }
+    },
+    "headerHide": {
+      "pageUrl": "https://nikhiltdev.sharepoint.com/sites/M365DEV/SitePages/Home.aspx",
+      "customActions": {
+        "e8a5bcec-6fdf-42e0-9e42-51031ceffe5c": {
+          "location": "ClientSideExtension.ApplicationCustomizer",
+          "properties": {
+            "testMessage": "Test message"
+          }
+        }
+      }
+    }
+  }
+}
