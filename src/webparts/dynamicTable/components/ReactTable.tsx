@@ -87,13 +87,13 @@ export default class ReactTable extends React.Component<
   /* This event will fire on adding new row */
   handleAddRow = () => {
     try {
-      var id = Math.random();
+      var id = Math.floor(Math.random() * 300);
       const tableColProps = {
         id: id,
         InvoiceNumber: "",
-        Itemcode: "",
+        ItemCode: "",
         ItemDesc: "",
-        BasePrice: "",
+        ItemBasePrice: "",
         InvoiceDate: "",
         Title: "",
       };
@@ -169,8 +169,8 @@ export default class ReactTable extends React.Component<
           <td>
             <input
               type="text"
-              name="Itemcode"
-              value={this.state.rows[idx].Itemcode}
+              name="ItemCode"
+              value={this.state.rows[idx].ItemCode}
               onChange={this.handleChange(idx)}
               id={this.state.rows[idx].id}
             />
@@ -189,8 +189,8 @@ export default class ReactTable extends React.Component<
           <td>
             <input
               type="text"
-              name="BasePrice"
-              value={this.state.rows[idx].BasePrice}
+              name="ItemBasePrice"
+              value={this.state.rows[idx].ItemBasePrice}
               onChange={this.handleChange(idx)}
               id={this.state.rows[idx].id}
             />
@@ -272,11 +272,12 @@ export default class ReactTable extends React.Component<
       var workOrderList = "Sales Items";
       var resTable = this.ValidateDynamicTable(this.state.rows);
       if (resTable.length > 0) {
-        dynamicTableData = JSON.stringify(resTable);
+        dynamicTableData = JSON.stringify({ resTable });
+        dynamicTableData = dynamicTableData.replace(/[{}]/g, "");
       }
 
       const bodyforadding: string = JSON.stringify({
-        __metadata: { type: "SP.Data.SharePointListItem" },
+        __metadata: { type: "SP.Data.Sales_x0020_ItemsListItem" },
         TableContent: dynamicTableData,
       });
 
@@ -324,7 +325,7 @@ export default class ReactTable extends React.Component<
           {
             headers: {
               Accept: "application/json;odata=verbose",
-              "Content-type": "application/json;odata=verbose",
+              "Content-Type": "application/json;odata=verbose",
               "odata-version": "",
             },
             body: body,
